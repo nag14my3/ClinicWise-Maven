@@ -12,7 +12,5 @@ Examples:
 
 	| log | pwd |
     | admin  | test |
-    | sharon | test |
-    | mark | test |
     
     

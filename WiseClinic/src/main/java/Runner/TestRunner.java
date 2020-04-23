@@ -7,14 +7,12 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features= "C:\\Users\\Aadhya\\eclipse-workspace\\WiseClinic\\src\\main\\java\\Features\\Login.feature" ,
-		glue = {"stepDefinition"},
-		monochrome = true,
-		strict = true,
-		dryRun = false
+		features= "C:\\Users\\Aadhya\\git\\ClinicWise-Maven\\WiseClinic\\src\\main\\java\\Features" ,
+		glue = {"stepDefinitions"}
+		
 		
 		)
 
 public class TestRunner {
-
+	
 }
