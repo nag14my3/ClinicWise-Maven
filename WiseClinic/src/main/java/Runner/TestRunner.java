@@ -9,8 +9,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
 		features= "C:\\Users\\Aadhya\\git\\ClinicWise-Maven\\WiseClinic\\src\\main\\java\\Features" ,
 		glue = {"stepDefinitions"}
-		
-		
+			
 		)
 
 public class TestRunner {
