@@ -4,11 +4,13 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import dataProviders.ConfigFileReader;
-import managers.FileReaderManager;
+import org.openqa.selenium.chrome.ChromeDriverService;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import data.ConfigFileReader;
+import managers.FileReaderManager;
 
 public class StepDefinition {
 
@@ -24,6 +26,7 @@ public class StepDefinition {
 		  
 
 		System.setProperty("webdriver.chrome.driver",FileReaderManager.getInstance().getConfigReader().getDriverPath());
+		System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
 		driver = new ChromeDriver();
 		driver.get(FileReaderManager.getInstance().getConfigReader().getApplicationUrl());
 

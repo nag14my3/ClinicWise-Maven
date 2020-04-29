@@ -1,6 +1,6 @@
 package managers;
 
-import dataProviders.ConfigFileReader;
+import data.ConfigFileReader;
 
 public class FileReaderManager {
 
