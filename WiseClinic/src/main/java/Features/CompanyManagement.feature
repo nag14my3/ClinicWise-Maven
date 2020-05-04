@@ -12,3 +12,5 @@ Examples:
 
 	| log | pwd |
     | clinic1admin  | test |
+    
+
