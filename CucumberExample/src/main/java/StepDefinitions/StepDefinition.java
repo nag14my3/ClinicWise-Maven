@@ -17,7 +17,7 @@ public class StepDefinition {
 	}
 
 	@Then("^Verify theoutput$")
-	public void verify_theoutput() throws Throwable {
+	public void verify_theoutput(){
 		System.out.println("verified");
 	}
 

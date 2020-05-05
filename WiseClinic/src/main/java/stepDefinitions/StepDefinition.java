@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.support.ui.Select;
 
+import AdminHomePage.AdminHomePage;
+import NewClinicReg.NewClinicCreation;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -16,6 +18,8 @@ public class StepDefinition {
 
 	
 	WebDriver driver;
+	AdminHomePage adminhomepage;
+	NewClinicCreation newclinic;
 //	ConfigFileReader configFileReader;
 
 
@@ -38,7 +42,7 @@ public class StepDefinition {
 		String actualtitle = driver.getTitle();
 		System.out.println(actualtitle);
 
-		Assert.assertEquals("Wise Clinic", actualtitle);
+		//Assert.assertEquals("Wise Clinic", actualtitle);
 
 	}
 
@@ -70,6 +74,12 @@ public class StepDefinition {
 		//Assert.assertEquals(s,"Wise Clinic");
 		
 		Thread.sleep(3000);
+		
+		adminhomepage = new AdminHomePage(driver);
+		adminhomepage.fill_PersonalDetails();
+		
+		newclinic = new NewClinicCreation(driver);
+		newclinic.create_new_clinic();
 		
 		
 	}
