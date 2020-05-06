@@ -14,4 +14,24 @@ Examples:
     | admin  | test |
     
     
+Scenario: Configuration of company info and creating new clinic
+
+Given User is already on login page
+When User Starts configuration of company info
+Then User creates a new clinic 
+Then Apply Settings to the clinic ceated
+Then Finish the creation of new clinic
+And Verify that new clinic is created by taking screenshot
+
+Scenario: Create a new Staff using Register Staff Functionality
+
+Given User is on login Page
+When User clicks on register new staff link
+Then User will be forwarded to New Staff Page
+Then Enter all the details of Satff 
+And Then click on Finish
+Then Logout as an admin
+
+
+    
     

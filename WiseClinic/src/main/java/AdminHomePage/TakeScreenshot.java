@@ -1,4 +1,4 @@
-package Screenshot;
+package AdminHomePage;
 
 import java.io.File;
 

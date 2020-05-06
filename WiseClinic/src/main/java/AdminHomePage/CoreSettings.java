@@ -1,4 +1,4 @@
-package DataHandling;
+package AdminHomePage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,18 +6,22 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-public class DataImport {
+public class CoreSettings {
 	
-	public DataImport(WebDriver driver) {
+	public CoreSettings(WebDriver driver) {
+		
 		PageFactory.initElements(driver, this);
 	}
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"continue_btn\"]")
-	private WebElement finish_button;
-
-	public void click_finish() {
+	private WebElement continue_button;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id=\"page_content\"]/div/div/form/fieldset/div[4]/div/a")
+	private WebElement skip_button;
+	
+	public void core_settings() {
 		
-		finish_button.click();
+		skip_button.click();
 	}
-
+	
 }

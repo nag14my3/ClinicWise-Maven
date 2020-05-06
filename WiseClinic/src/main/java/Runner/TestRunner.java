@@ -10,6 +10,7 @@ import cucumber.api.junit.Cucumber;
 		features= "C:\\Users\\Aadhya\\git\\ClinicWise-Maven\\WiseClinic\\src\\main\\java\\Features\\Login.feature" ,
 		glue = {"stepDefinitions"},
 		plugin = {"pretty", "html:target/cucumber-reports"}
+		
 			
 		)
 

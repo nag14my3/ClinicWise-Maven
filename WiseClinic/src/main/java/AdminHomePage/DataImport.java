@@ -1,4 +1,4 @@
-package Staffs;
+package AdminHomePage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,19 +6,18 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-public class NewStaff {
+public class DataImport {
 	
-	public NewStaff(WebDriver driver) {
-		
+	public DataImport(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"continue_btn\"]")
-	private WebElement continue_button;
-	
-	public void new_staff() {
+	private WebElement finish_button;
+
+	public void click_finish() {
 		
-		continue_button.click();
+		finish_button.click();
 	}
 
 }
