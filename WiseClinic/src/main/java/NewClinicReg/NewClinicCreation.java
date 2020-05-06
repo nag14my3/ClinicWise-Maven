@@ -37,8 +37,14 @@ public class NewClinicCreation {
 	@FindBy(how = How.XPATH, using = "//*[@id=\"clinic_use_separate_reference_number\"]")
 	private WebElement reference_Num;
 
-	@FindBy(how = How.XPATH, using = "")
+	@FindBy(how = How.XPATH, using = "//*[@id=\"clinic_event_color_green\"]")
 	private WebElement Appointment_color;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id=\"continue_btn\"]")
+	private WebElement continue_button;
+
+	@FindBy(how = How.XPATH, using = "//*[@id=\"new_clinic\"]/fieldset/div[11]/div/a")
+	private WebElement skip_button;
 
 	public void enter_Name(String name) {
 
@@ -85,13 +91,20 @@ public class NewClinicCreation {
 
 	public void appointment_color() {
 
-		Appointment_color.findElement(By.xpath("\"//*[@id=\\\"clinic_event_color_green\\\"]\"")).click();
+		Appointment_color.click();
+	}
+	
+	public void click_continue() {
+		continue_button.submit();
+	}
 
+	public void click_skip() {
+		skip_button.click();
 	}
 	
 	public void create_new_clinic() {
 		
-		enter_Name("Appollo");
+		enter_Name("Ohio");
 		enter_fulladdress("#600, Los Angelas, USA");
 		enter_addressline1("Street2, 1st Main");
 		enter_addressline2("USA");
@@ -100,7 +113,7 @@ public class NewClinicCreation {
 		check_invoice("Happy Message");
 		reference();
 		appointment_color();
-		
+		click_continue();	
 		
 	}
 }

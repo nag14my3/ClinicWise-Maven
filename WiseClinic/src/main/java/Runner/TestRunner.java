@@ -8,7 +8,8 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		features= "C:\\Users\\Aadhya\\git\\ClinicWise-Maven\\WiseClinic\\src\\main\\java\\Features\\Login.feature" ,
-		glue = {"stepDefinitions"}
+		glue = {"stepDefinitions"},
+		plugin = {"pretty", "html:target/cucumber-reports"}
 			
 		)
 

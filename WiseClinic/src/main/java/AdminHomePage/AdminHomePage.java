@@ -16,12 +16,12 @@ public class AdminHomePage {
 	@FindBy(how = How.XPATH, using = "//*[@id=\"account_name\"]")
 	private WebElement company_Name;
 
-//	@FindBy(how = How.XPATH, using = "//*[@id=\"account_logo\"]")
-//	private WebElement Company_Logo;
+	// @FindBy(how = How.XPATH, using = "//*[@id=\"account_logo\"]")
+	// private WebElement Company_Logo;
 
 	@FindBy(how = How.XPATH, using = "//*[@id=\"account_time_zone\"]")
 	private WebElement time_Zone;
-	
+
 	@FindBy(how = How.XPATH, using = "//*[@id=\"account_locale\"]")
 	private WebElement language;
 
@@ -41,11 +41,8 @@ public class AdminHomePage {
 	private WebElement skip_button;
 
 	public void company_Name(String name) {
-
 		String s = company_Name.getText();
-		System.out.println(s);
-
-		if (s.equals("Wise Clinic")) {
+		if (!(s == null)) {
 			System.out.println("company name is same as what you expected");
 		} else {
 			company_Name.sendKeys(name);
@@ -53,31 +50,49 @@ public class AdminHomePage {
 
 	}
 
-//	//public void upload_logo(String logo) {
-//		Company_Logo.sendKeys(logo);
-//	}
+	// //public void upload_logo(String logo) {
+	// Company_Logo.sendKeys(logo);
+	// }
 
 	public void select_timeZone() {
 		Select time = new Select(time_Zone);
 		time.selectByIndex(2);
 	}
-	
+
 	public void select_language() {
 		Select lan = new Select(language);
 		lan.selectByIndex(2);
-		
+
 	}
 
 	public void enter_addressline1(String addressline1) {
-		address_line1.sendKeys(addressline1);
+		String s = address_line1.getText();
+
+		if (!(s == null)) {
+			System.out.println("Addressline1");
+		} else {
+
+			address_line1.sendKeys(addressline1);
+		}
 	}
 
 	public void enter_addressline2(String addressline2) {
-		address_line2.sendKeys(addressline2);
+		String s = address_line2.getText();
+
+		if (!(s == null)) {
+			System.out.println("Addressline2");
+		} else {
+			address_line2.sendKeys(addressline2);
+		}
 	}
 
 	public void enter_Email(String enteremail) {
-		email.sendKeys(enteremail);
+		String s = email.getText();
+		if (!(s == null)) {
+			System.out.println("Email");
+		} else {
+			email.sendKeys(enteremail);
+		}
 	}
 
 	public void click_continue() {
@@ -90,13 +105,12 @@ public class AdminHomePage {
 
 	public void fill_PersonalDetails() {
 		company_Name("Wise Clinic");
-		//upload_logo("Test");
+		// upload_logo("Test");
 		select_timeZone();
 		enter_addressline1("#601, DUKE BLVD");
 		enter_addressline2("LosAngels");
 		enter_Email("admin@wiseclinic.com");
 		click_continue();
-		
 
 	}
 
