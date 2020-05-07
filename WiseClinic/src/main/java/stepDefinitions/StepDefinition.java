@@ -1,10 +1,14 @@
 package stepDefinitions;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
+
+import com.aventstack.extentreports.GherkinKeyword;
+
 import AdminHomePage.AdminHomePage;
 import AdminHomePage.CoreSettings;
 import AdminHomePage.DataImport;
@@ -13,6 +17,7 @@ import AdminHomePage.NewClinicCreation;
 import AdminHomePage.NewStaff;
 import AdminHomePage.ReceiptFormat;
 import AdminHomePage.TakeScreenshot;
+import Base.BaseUtils;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -20,9 +25,9 @@ import cucumber.api.java.en.When;
 import dataProviders.ConfigFileReader;
 import managers.FileReaderManager;
 
-public class StepDefinition {
+public class StepDefinition extends BaseUtils {
 
-	public static WebDriver driver;
+	// public static WebDriver driver;
 	AdminHomePage adminhomepage;
 	NewClinicCreation newclinic;
 	ReceiptFormat receiptformat;
@@ -34,14 +39,10 @@ public class StepDefinition {
 	ConfigFileReader configFileReader;
 
 	@Given("^User is on the login page$")
-	public void user_is_on_the_login_page() {
+	public void user_is_on_the_login_page() throws ClassNotFoundException {
+		scenarioDef.createNode(new GherkinKeyword("Given"), "User is on the login page");
 
 		configFileReader = new ConfigFileReader();
-
-		System.setProperty("webdriver.chrome.driver",
-				FileReaderManager.getInstance().getConfigReader().getDriverPath());
-		System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
-		driver = new ChromeDriver();
 		driver.get(FileReaderManager.getInstance().getConfigReader().getApplicationUrl());
 
 	}
@@ -78,7 +79,7 @@ public class StepDefinition {
 
 		System.out.println("Logged in successfully");
 
-		driver.findElement(By.xpath("//*[@id=\"page_content\"]/div/div/p[1]/a[1]")).click();
+		// driver.findElement(By.xpath("//*[@id=\"page_content\"]/div/div/p[1]/a[1]")).click();
 		// String s =
 		// driver.findElement(By.xpath("//*[@id=\"account_name\"]")).getText();
 		// System.out.println(s);
@@ -90,6 +91,8 @@ public class StepDefinition {
 
 	@Given("^User is already on login page$")
 	public void user_is_already_on_login_page() {
+
+		driver.findElement(By.xpath("//*[@id=\"page_content\"]/div/div/p[1]/a[1]")).click();
 
 		System.out.println("Yes already in login page");
 
@@ -153,45 +156,66 @@ public class StepDefinition {
 		export = new ExportData(driver);
 		export.dataexport();
 
-		
-	}
-	
-	@Given("^User is on login Page$")
-	public void user_is_on_login_Page() throws InterruptedException {
-		
-		driver.findElement(By.xpath("//*[@id=\"breadcrumbs\"]/ul/li/a")).click();
-		
-		Thread.sleep(3000);
-		
-		driver.findElement(By.xpath("//*[@id=\"page_content\"]/div/div/p[2]/a[1]")).click();
-		
-		
-	    
 	}
 
-	
+	@Given("^User is on login Page$")
+	public void user_is_on_login_Page() throws InterruptedException {
+
+		driver.findElement(By.xpath("//*[@id=\"breadcrumbs\"]/ul/li/a")).click();
+
+		Thread.sleep(3000);
+
+	}
+
 	@When("^User clicks on register new staff link$")
 	public void user_clicks_on_register_new_staff_link() {
-	    
+
+		driver.findElement(By.xpath("//*[@id=\"page_content\"]/div/div/p[2]/a[1]")).click();
+
 	}
 
 	@Then("^User will be forwarded to New Staff Page$")
-	public void user_will_be_forwarded_to_New_Staff_Page() {
-	    
+	public void user_will_be_forwarded_to_New_Staff_Page() throws InterruptedException {
+
+		Thread.sleep(3000);
+
+		newstaff = new NewStaff(driver);
+
+		newstaff.new_satff_creation();
+
 	}
 
 	@Then("^Enter all the details of Satff$")
 	public void enter_all_the_details_of_Satff() {
-	    
+
+		System.out.println("Details are entered");
+
 	}
 
 	@Then("^Then click on Finish$")
-	public void then_click_on_Finish() {
-		
-		
-	    
+	public void then_click_on_Finish() throws Exception {
+
+		System.out.println("Finished with creation of new staff");
+
+		driver.findElement(By.xpath("//*[@id=\"breadcrumbs\"]/ul/li[1]/a")).click();
+
+		driver.findElement(By.xpath("//*[@id=\"page_content\"]/div/div/p[2]/a[2]")).click();
+
+		WebElement ele = driver.findElement(By.xpath("//*[@id=\"page_content\"]/div/div/div[6]/h4"));
+
+		screenshot = new TakeScreenshot(driver);
+		screenshot.takeSnapShot(driver, "C:\\User\\Aadhya\\Pictures");
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		int yPosition = ele.getLocation().getY();
+		js.executeScript("window.scroll (0, " + yPosition + ") ");
+		Thread.sleep(3000L);
+
+		screenshot = new TakeScreenshot(driver);
+		screenshot.takeSnapShot(driver, "C:\\User\\Aadhya\\Pictures");
+
 	}
-	
+
 	@Then("^Logout as an admin$")
 	public void logout() {
 		WebElement element = driver.findElement(By.xpath("//*[@id=\"user_nav_link\"]/i"));
@@ -208,5 +232,29 @@ public class StepDefinition {
 
 	}
 
+	@Given("Practioner is on the login page")
+	public void practioner_is_on_the_login_page() {
+
+		System.out.println("User is on Login page");
+
+	}
+
+	@When("User checks his details")
+	public void user_checks_his_details() throws Exception {
+
+		driver.findElement(By.xpath("//*[@id=\"user_nav_link\"]/img")).click();
+		driver.findElement(By.xpath("//*[@id=\"profile_link\"]")).click();
+
+		screenshot = new TakeScreenshot(driver);
+		screenshot.takeSnapShot(driver, "C:\\User\\Aadhya\\Pictures");
+
+	}
+
+	@Then("He verifies that clinic which he got registered is displayed")
+	public void he_verifies_that_clinic_which_he_got_registered_is_displayed() {
+
+		driver.findElement(By.xpath("//*[@id=\"practitioner_provider_numbers\"]/table/tbody/tr/td[1]")).getText();
+
+	}
 
 }

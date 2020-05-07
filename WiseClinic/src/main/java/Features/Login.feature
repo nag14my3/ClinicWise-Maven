@@ -32,6 +32,5 @@ Then Enter all the details of Satff
 And Then click on Finish
 Then Logout as an admin
 
-
     
     
