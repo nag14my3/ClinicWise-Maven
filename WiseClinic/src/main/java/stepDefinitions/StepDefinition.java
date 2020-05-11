@@ -25,9 +25,9 @@ import cucumber.api.java.en.When;
 import dataProviders.ConfigFileReader;
 import managers.FileReaderManager;
 
-public class StepDefinition extends BaseUtils {
+public class StepDefinition  {
 
-	// public static WebDriver driver;
+	 public static WebDriver driver;
 	AdminHomePage adminhomepage;
 	NewClinicCreation newclinic;
 	ReceiptFormat receiptformat;
@@ -40,7 +40,12 @@ public class StepDefinition extends BaseUtils {
 
 	@Given("^User is on the login page$")
 	public void user_is_on_the_login_page() throws ClassNotFoundException {
-		scenarioDef.createNode(new GherkinKeyword("Given"), "User is on the login page");
+	//	scenarioDef.createNode(new GherkinKeyword("Given"), "User is on the login page");
+		System.setProperty("webdriver.chrome.driver",
+				FileReaderManager.getInstance().getConfigReader().getDriverPath());
+		System.setProperty(ChromeDriverService.CHROME_DRIVER_SILENT_OUTPUT_PROPERTY, "true");
+		driver = new ChromeDriver();
+		
 
 		configFileReader = new ConfigFileReader();
 		driver.get(FileReaderManager.getInstance().getConfigReader().getApplicationUrl());
@@ -256,5 +261,14 @@ public class StepDefinition extends BaseUtils {
 		driver.findElement(By.xpath("//*[@id=\"practitioner_provider_numbers\"]/table/tbody/tr/td[1]")).getText();
 
 	}
+	
+	@Then("Logout as an Practioner")
+	public void logout_as_an_Practioner() {
+	    driver.findElement(By.xpath("//*[@id=\"user_nav_link\"]/i")).click();
+	    driver.findElement(By.xpath("//*[@id=\"sign_out_link\"]")).click();
+	    System.out.println("Logged out successfully");
+	    driver.close();
+	}
+
 
 }

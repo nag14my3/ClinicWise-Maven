@@ -18,5 +18,5 @@ Examples:
  Given Practioner is on the login page
  When User checks his details
  Then He verifies that clinic which he got registered is displayed
- 
+ Then Logout as an Practioner
  
